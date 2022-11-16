@@ -27,15 +27,15 @@ public class GameManager : MonoBehaviour
         {
             life = 5;
         }
-
-        tScore.text = "Score: " + score;
-        tLife.text = "Life: " + life;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(currentGameState == GameStates.inGame)
+        tScore.text = "Score: " + score;
+        tLife.text = "Life: " + life;
+
+        if (currentGameState == GameStates.inGame)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -52,6 +52,18 @@ public class GameManager : MonoBehaviour
                 SetNewGameState(GameStates.inGame);
             }
         }
+
+        if(life <= 0)
+        {
+            life = 0;
+            GameOver();
+        }
+
+    }
+
+    void GameOver()
+    {
+        SetNewGameState(GameStates.gameOver);
     }
 
     public void StartGame()

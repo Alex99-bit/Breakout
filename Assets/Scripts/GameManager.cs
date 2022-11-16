@@ -9,19 +9,21 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameStates currentGameState;
     public int score, life;
-    public TextMeshPro tScore, tLife;
+    public TextMeshProUGUI tScore, tLife;
 
     private void Awake()
     {
         if(instance == null)
             instance = this;
+        tScore = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
+        tLife = GameObject.Find("Life").GetComponent<TextMeshProUGUI>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
-        if(life.IsUnityNull())
+        if(life == 0)
         {
             life = 5;
         }

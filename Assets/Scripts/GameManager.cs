@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameStates currentGameState;
     public int score, life;
     public TextMeshProUGUI tScore, tLife;
+    public GameObject pantallaStart, pantallaPause, pantallaGameOver;
 
     private void Awake()
     {
@@ -41,15 +42,16 @@ public class GameManager : MonoBehaviour
             {
                 // Entra en modo pausa
                 SetNewGameState(GameStates.pause);
+                print("pausa");
             }
         }
-
-        if(currentGameState == GameStates.pause)
+        else if(currentGameState == GameStates.pause)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 // Se quita la pausa
                 SetNewGameState(GameStates.inGame);
+                print("no pausa");
             }
         }
 
@@ -77,14 +79,28 @@ public class GameManager : MonoBehaviour
         {
             case GameStates.start:
                 Time.timeScale = 0;
+                pantallaGameOver.active = false;
+                pantallaPause.active = false;
+                pantallaStart.active = true;
                 break;
 
             case GameStates.inGame:
+                pantallaPause.active = false;
+                pantallaStart.active = false;
+                pantallaGameOver.active = false;
                 Time.timeScale = 1;
+                break;
+
+            case GameStates.pause:
+                Time.timeScale = 0;
+                pantallaPause.active = true;
                 break;
 
             case GameStates.gameOver:
                 Time.timeScale = 0;
+                pantallaStart.active = false;
+                pantallaPause.active = false;
+                pantallaGameOver.active = true;
                 break;
         }
 

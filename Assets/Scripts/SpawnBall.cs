@@ -29,13 +29,22 @@ public class SpawnBall : MonoBehaviour
         if (collision.gameObject.CompareTag("cube"))
         {
             GameManager.instance.life--;
-            ballRigid.gravityScale = 0;
-            ballRigid.velocity = Vector3.zero;
-            ballRigid.transform.position = spawn.transform.position;
-
-            // Ahora se manda la pelota hacia el player
-            ballRigid.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
-            ballRigid.gravityScale = 1;
+            HoldBall();
+            LaunchBall();
         }
+    }
+
+    public void HoldBall()
+    {
+        ballRigid.gravityScale = 0;
+        ballRigid.velocity = Vector3.zero;
+        ballRigid.transform.position = spawn.transform.position;
+    }
+
+    public void LaunchBall()
+    {
+        // Ahora se manda la pelota hacia el player
+        ballRigid.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
+        ballRigid.gravityScale = 1;
     }
 }

@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6879305566747314480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: -6.66, z: -9.881973}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -73,3 +73,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballRigid: {fileID: 0}
   spawn: {fileID: 0}
+  player: {fileID: 0}
+  speed: 0

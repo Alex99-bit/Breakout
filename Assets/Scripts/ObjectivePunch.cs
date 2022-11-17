@@ -35,12 +35,11 @@ public class ObjectivePunch : MonoBehaviour
             else
             {
                 multy = 1;
+                auxLife = GameManager.instance.life;
             }
 
             GameManager.instance.score++;
             GameManager.instance.score *= multy;
-
-            auxLife = GameManager.instance.life;
         }
     }
 }

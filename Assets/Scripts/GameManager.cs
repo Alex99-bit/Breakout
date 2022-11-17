@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameStates currentGameState;
     public int score, life;
     public TextMeshProUGUI tScore, tLife;
-    public GameObject pantallaStart, pantallaPause, pantallaGameOver;
+    public GameObject pantallaStart, pantallaPause, pantallaGameOver, cube;
 
     private void Awake()
     {
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void GameOver()
+    public void GameOver()
     {
         SetNewGameState(GameStates.gameOver);
     }
@@ -71,6 +71,11 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SetNewGameState(GameStates.inGame);
+    }
+
+    public void GenCube()
+    {
+        Instantiate(cube, new Vector2(0, 0, 0));
     }
 
     void SetNewGameState(GameStates newGameState)

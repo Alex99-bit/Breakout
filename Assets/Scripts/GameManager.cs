@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(scene);
+        //Destroy(scene);
         score = 0;
         destroy = 0;
         if(life == 0)
@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour
         switch (newGameState)
         {
             case GameStates.start:
+                startPlay = true;
                 Time.timeScale = 0;
                 pantallaGameOver.active = false;
                 pantallaPause.active = false;
@@ -144,8 +145,7 @@ public class GameManager : MonoBehaviour
                 life = auxLife;
                 score = 0;
                 SpawnBall.instance.HoldBall();
-                Destroy(scene);
-                startPlay = true;
+                //Destroy(scene);
                 break;
 
             case GameStates.inGame:
@@ -166,6 +166,7 @@ public class GameManager : MonoBehaviour
                 pantallaPause.active = false;
                 pantallaGameOver.active = true;
                 gameOverScore.text = "Your score: " + score;
+                Destroy(scene);
                 break;
         }
 

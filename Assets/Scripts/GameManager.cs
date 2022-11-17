@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject pantallaStart, pantallaPause, pantallaGameOver, scene, cube;
     public Transform transformSpawn;
     public Rigidbody2D rbSpawn;
-    bool startPlay;
+    public bool startPlay;
     // [SerializeField] GameObject transformSpawn;
 
     private void Awake()
@@ -32,8 +32,9 @@ public class GameManager : MonoBehaviour
         {
             life = 5;
         }
-        startPlay = false;
+        //startPlay = false;
         //GenCube();
+        //GenScecene();
     }
 
     // Update is called once per frame
@@ -103,15 +104,15 @@ public class GameManager : MonoBehaviour
 
     public void GenScecene()
     {
-        //Instantiate(scene, transformSpawn);
-        for (double i = rbSpawn.position.y; i <= 0.0f; i -=0.5f)
+        Instantiate(scene, transformSpawn);
+        /*for (double i = rbSpawn.position.y; i <= 0.0f; i -=0.5f)
         {
             for (double j = rbSpawn.position.x; j <= 8.5f; j += 0.5)
             {
                 rbSpawn.position = new Vector2((float)j, (float)i);
                 Instantiate(cube, transformSpawn);
             }
-        }
+        }*/
     }
 
     void SetNewGameState(GameStates newGameState)
@@ -123,6 +124,7 @@ public class GameManager : MonoBehaviour
                 pantallaGameOver.active = false;
                 pantallaPause.active = false;
                 pantallaStart.active = true;
+                startPlay = true;
                 break;
 
             case GameStates.inGame:
@@ -130,7 +132,6 @@ public class GameManager : MonoBehaviour
                 pantallaStart.active = false;
                 pantallaGameOver.active = false;
                 Time.timeScale = 1;
-                startPlay = true;
                 break;
 
             case GameStates.pause:

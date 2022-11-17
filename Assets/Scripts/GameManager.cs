@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameStates currentGameState;
-    public int score, life, destroy;
+    public int score, life, destroy, auxLife;
     public TextMeshProUGUI tScore, tLife, gameOverScore;
     public GameObject pantallaStart, pantallaPause, pantallaGameOver, scene, cube;
     public Transform transformSpawn;
@@ -29,12 +29,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Destroy(scene);
         score = 0;
         destroy = 0;
         if(life == 0)
         {
             life = 5;
         }
+
+        auxLife = life;
 
         SpawnBall.instance.HoldBall();
         //startPlay = false;
@@ -133,6 +136,10 @@ public class GameManager : MonoBehaviour
                 pantallaGameOver.active = false;
                 pantallaPause.active = false;
                 pantallaStart.active = true;
+                life = auxLife;
+                score = 0;
+                SpawnBall.instance.HoldBall();
+                Destroy(scene);
                 startPlay = true;
                 break;
 

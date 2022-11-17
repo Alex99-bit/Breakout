@@ -127,6 +127,11 @@ public class GameManager : MonoBehaviour
         }*/
     }
 
+    public void GameExit()
+    {
+        Application.Quit();
+    }
+
     void SetNewGameState(GameStates newGameState)
     {
         switch (newGameState)

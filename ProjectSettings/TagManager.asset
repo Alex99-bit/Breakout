@@ -7,6 +7,7 @@ TagManager:
   - out
   - cube
   - objective
+  - scene
   layers:
   - Default
   - TransparentFX

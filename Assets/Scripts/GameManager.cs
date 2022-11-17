@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameStates currentGameState;
     public int score, life, destroy, auxLife;
     public TextMeshProUGUI tScore, tLife, gameOverScore;
-    public GameObject pantallaStart, pantallaPause, pantallaGameOver, scene, cube;
+    public GameObject pantallaStart, pantallaPause, pantallaGameOver, scene, cube, auxScene;
     public Transform transformSpawn;
     public Rigidbody2D rbSpawn;
     public bool startPlay;
@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
         {
             startPlay = false;
             GenScecene();
+            SpawnBall.instance.HoldBall();
             SpawnBall.instance.LaunchBall();
         }
 
@@ -93,11 +94,20 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         SetNewGameState(GameStates.inGame);
+        startPlay = true;
     }
 
     public void SetStart()
     {
         SetNewGameState(GameStates.start);
+    }
+
+    void DestroyScene()
+    {
+        //auxScene.GetComponentsInChildren<GameObject>();
+        
+        Destroy(auxScene);
+        print("Destruido");
     }
 
     /*public void GenCube()
@@ -146,6 +156,7 @@ public class GameManager : MonoBehaviour
                 score = 0;
                 SpawnBall.instance.HoldBall();
                 //Destroy(scene);
+                DestroyScene();
                 break;
 
             case GameStates.inGame:
@@ -166,7 +177,7 @@ public class GameManager : MonoBehaviour
                 pantallaPause.active = false;
                 pantallaGameOver.active = true;
                 gameOverScore.text = "Your score: " + score;
-                Destroy(scene);
+                //Destroy(scene);
                 break;
         }
 

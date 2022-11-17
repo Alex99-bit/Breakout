@@ -2761,6 +2761,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 453422266}
     - target: {fileID: 292044849661017806, guid: 757e91fef9c58f54d88854d34f6ff989, type: 3}
+      propertyPath: auxScene
+      value: 
+      objectReference: {fileID: 453422264}
+    - target: {fileID: 292044849661017806, guid: 757e91fef9c58f54d88854d34f6ff989, type: 3}
       propertyPath: startPlay
       value: 0
       objectReference: {fileID: 0}

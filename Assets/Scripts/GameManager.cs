@@ -10,7 +10,10 @@ public class GameManager : MonoBehaviour
     public GameStates currentGameState;
     public int score, life;
     public TextMeshProUGUI tScore, tLife;
-    public GameObject pantallaStart, pantallaPause, pantallaGameOver, cube;
+    public GameObject pantallaStart, pantallaPause, pantallaGameOver, scene, cube;
+    public Transform transformSpawn;
+    public Rigidbody2D rbSpawn;
+    bool startPlay;
     // [SerializeField] GameObject transformSpawn;
 
     private void Awake()
@@ -29,6 +32,7 @@ public class GameManager : MonoBehaviour
         {
             life = 5;
         }
+        startPlay = false;
         //GenCube();
     }
 
@@ -63,6 +67,12 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
+        if (startPlay)
+        {
+            startPlay = false;
+            GenScecene();
+        }
+
     }
 
     public void GameOver()
@@ -75,9 +85,11 @@ public class GameManager : MonoBehaviour
         SetNewGameState(GameStates.inGame);
     }
 
+
+
     /*public void GenCube()
     {
-        for(double i = transformSpawn.transform.position.x; i < 8.5f; i += 0.5)
+        for(double i = transformSpawn.transform.position.x; i <= 8.5f; i += 0.5)
         {
             transformSpawn.transform = new Vector2((float)i, transformSpawn.transform.position.y);
             Instantiate(cube, transformSpawn.transform);
@@ -88,6 +100,19 @@ public class GameManager : MonoBehaviour
             Instantiate(cube, transformSpawn);
         }
     }*/
+
+    public void GenScecene()
+    {
+        //Instantiate(scene, transformSpawn);
+        for (double i = rbSpawn.position.y; i <= 0.0f; i -=0.5f)
+        {
+            for (double j = rbSpawn.position.x; j <= 8.5f; j += 0.5)
+            {
+                rbSpawn.position = new Vector2((float)j, (float)i);
+                Instantiate(cube, transformSpawn);
+            }
+        }
+    }
 
     void SetNewGameState(GameStates newGameState)
     {
@@ -105,6 +130,7 @@ public class GameManager : MonoBehaviour
                 pantallaStart.active = false;
                 pantallaGameOver.active = false;
                 Time.timeScale = 1;
+                startPlay = true;
                 break;
 
             case GameStates.pause:

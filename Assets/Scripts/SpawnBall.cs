@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class SpawnBall : MonoBehaviour
 {
+    public static SpawnBall instance;
     public Rigidbody2D ballRigid;
     public Transform spawn, player;
     public float speed;
+
+    private void Awake()
+    {
+        if(instance == null)
+            instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -16,12 +23,6 @@ public class SpawnBall : MonoBehaviour
         {
             speed = 5;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

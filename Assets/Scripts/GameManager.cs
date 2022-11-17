@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public int score, life;
     public TextMeshProUGUI tScore, tLife;
     public GameObject pantallaStart, pantallaPause, pantallaGameOver, cube;
+    // [SerializeField] GameObject transformSpawn;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
         {
             life = 5;
         }
+        //GenCube();
     }
 
     // Update is called once per frame
@@ -73,10 +75,19 @@ public class GameManager : MonoBehaviour
         SetNewGameState(GameStates.inGame);
     }
 
-    public void GenCube()
+    /*public void GenCube()
     {
-        Instantiate(cube, new Vector2(0, 0, 0));
-    }
+        for(double i = transformSpawn.transform.position.x; i < 8.5f; i += 0.5)
+        {
+            transformSpawn.transform = new Vector2((float)i, transformSpawn.transform.position.y);
+            Instantiate(cube, transformSpawn.transform);
+        }
+
+        /*for (transformSpawn.position.x = -8.5f; transformSpawn.position.x <= 8.5f; transform.position.x += 0.5)
+        {
+            Instantiate(cube, transformSpawn);
+        }
+    }*/
 
     void SetNewGameState(GameStates newGameState)
     {

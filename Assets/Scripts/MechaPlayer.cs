@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class MechaPlayer : MonoBehaviour
 {
+    public static MechaPlayer instance;
     Rigidbody2D playerRb;
     public float speed;
+    public Transform playerTransform;
+
+    private void Awake()
+    {
+        if(instance == null)
+            instance = this;
+    }
 
     // Por cada 10 bloques en cadena, se vaya multiplicando por 3
 
@@ -13,6 +21,7 @@ public class MechaPlayer : MonoBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody2D>();   
+        playerTransform = GetComponent<Transform>();
     }
 
     // Update is called once per frame

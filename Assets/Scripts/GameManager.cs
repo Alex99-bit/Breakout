@@ -10,10 +10,12 @@ public class GameManager : MonoBehaviour
     public GameStates currentGameState;
     public int score, life, destroy, auxLife;
     public TextMeshProUGUI tScore, tLife, gameOverScore;
-    public GameObject pantallaStart, pantallaPause, pantallaGameOver, scene, cube, auxScene;
+    public GameObject pantallaStart, pantallaPause, pantallaGameOver, scene, cube;
     public Transform transformSpawn;
     public Rigidbody2D rbSpawn;
-    public bool startPlay;
+    public bool startPlay, auxScene;
+
+    //float auxPlayerTransform;
 
     //SpawnBall spawnBall;
     // [SerializeField] GameObject transformSpawn;
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //Destroy(scene);
+        //auxPlayerTransform = MechaPlayer.instance.playerTransform.position.x;
         score = 0;
         destroy = 0;
         if(life == 0)
@@ -38,7 +41,7 @@ public class GameManager : MonoBehaviour
         }
 
         auxLife = life;
-
+        auxScene = false;
         SpawnBall.instance.HoldBall();
         //startPlay = false;
         //GenCube();
@@ -76,6 +79,10 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
+    }
+
+    private void FixedUpdate()
+    {
         if (startPlay)
         {
             startPlay = false;
@@ -83,7 +90,6 @@ public class GameManager : MonoBehaviour
             SpawnBall.instance.HoldBall();
             SpawnBall.instance.LaunchBall();
         }
-
     }
 
     public void GameOver()
@@ -105,9 +111,10 @@ public class GameManager : MonoBehaviour
     void DestroyScene()
     {
         //auxScene.GetComponentsInChildren<GameObject>();
-        
+        /*auxScene = transform.GetChild(0).gameObject;
         Destroy(auxScene);
-        print("Destruido");
+        print("Destruido");*/
+        auxScene = true;
     }
 
     /*public void GenCube()
@@ -147,6 +154,8 @@ public class GameManager : MonoBehaviour
         switch (newGameState)
         {
             case GameStates.start:
+                DestroyScene();
+                //MechaPlayer.instance.playerTransform.position.x = auxPlayerTransform;
                 startPlay = true;
                 Time.timeScale = 0;
                 pantallaGameOver.active = false;
@@ -156,7 +165,6 @@ public class GameManager : MonoBehaviour
                 score = 0;
                 SpawnBall.instance.HoldBall();
                 //Destroy(scene);
-                DestroyScene();
                 break;
 
             case GameStates.inGame:

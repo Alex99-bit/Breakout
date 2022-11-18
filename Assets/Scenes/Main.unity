@@ -2919,8 +2919,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6526344265516526978, guid: 0097cbd12312f02488dc5c63437af048, type: 3}
+      propertyPath: m_Mass
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6526344265516526978, guid: 0097cbd12312f02488dc5c63437af048, type: 3}
       propertyPath: m_GravityScale
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6526344265516526981, guid: 0097cbd12312f02488dc5c63437af048, type: 3}
       propertyPath: m_RootOrder
@@ -3033,7 +3037,7 @@ PrefabInstance:
       objectReference: {fileID: 571570448}
     - target: {fileID: 6879305566747314511, guid: f010832d3c91c7b41851d279006f2300, type: 3}
       propertyPath: speed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6879305566747314511, guid: f010832d3c91c7b41851d279006f2300, type: 3}
       propertyPath: player
